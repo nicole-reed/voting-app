@@ -42,7 +42,7 @@ const handler = async (req, res) => {
                 throw new BadRequestError('incorrect loginCode')
             }
 
-            const token = jwt.sign({ email }, process.env.SECRET)
+            const token = jwt.sign({ email }, process.env.SECRET, { expiresIn: '21d' })
 
             res.send({ token })
 
