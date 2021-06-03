@@ -6,7 +6,6 @@ import { BadRequestError } from '../../errors/badRequest.error'
 
 
 const handler = async (req, res) => {
-
     if (req.method === 'POST') {
         try {
             const { email, loginCode } = req.body
@@ -44,6 +43,7 @@ const handler = async (req, res) => {
 
             const token = jwt.sign({ email }, process.env.SECRET, { expiresIn: '21d' })
 
+            // res.setHeader('Set-Cookie', [`TOKEN=${token}`])
             res.send({ token })
 
         } catch (error) {

@@ -7,7 +7,7 @@ export default function SignUpForm() {
         try {
             event.preventDefault()
             await axios.post('/api/signin', { email: event.target.email.value })
-            toastr.success('user created')
+            window.location.href = '/confirm'
         } catch (error) {
 
             toastr.error(error.response.data)

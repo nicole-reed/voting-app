@@ -1,22 +1,17 @@
 import axios from 'axios'
 import toastr from 'toastr'
-import Link from 'next/link'
+
 
 export default function Confirm() {
     const registerUser = async event => {
-
         try {
             event.preventDefault()
-            await axios.post('/api/confirm', { email: event.target.email.value, loginCode: event.target.loginCode.value })
+            const res = await axios.post('/api/confirm', { email: event.target.email.value, loginCode: event.target.loginCode.value })
+            document.cookie = `TOKEN=${res.data.token}`
             window.location.href = '/profile'
-
         } catch (error) {
-
             toastr.error(error.response.data)
-
         }
-
-
     }
 
     return (

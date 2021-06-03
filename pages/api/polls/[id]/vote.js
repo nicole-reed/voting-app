@@ -8,6 +8,13 @@ const handler = async (req, res) => {
 
     if (req.method === 'PUT') {
         try {
+            const { authorization } = req.headers
+
+            if (!authorization) {
+                throw new Error('forbidden')
+            }
+
+            const decodedJwt = jwt.verify(authorization, process.env.SECRET)
             const { id } = req.query
             if (!id) {
                 throw new BadRequestError('please enter id')

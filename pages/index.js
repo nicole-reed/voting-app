@@ -2,6 +2,7 @@ import { server } from '../config'
 import Head from 'next/head'
 import Link from 'next/link'
 import Polls from '../components/Polls'
+import axios from 'axios'
 
 export default function Home({ polls }) {
   return (
@@ -16,7 +17,11 @@ export default function Home({ polls }) {
         </h1>
 
         <p className="description">
-          We can't wait to hear <Link href='/signin'>your</Link> opinions.
+          We can't wait to hear your opinions.
+        </p>
+
+        <p>
+          Sign Up <Link href='/signup'>Here</Link>!
         </p>
 
         <div className="grid">
@@ -142,7 +147,6 @@ export default function Home({ polls }) {
 export const getStaticProps = async () => {
   const res = await fetch(`${server}/api/polls`)
   const polls = await res.json()
-  console.log('polls', polls)
 
   return {
     props: {

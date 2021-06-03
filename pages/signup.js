@@ -16,7 +16,7 @@ export default function SignUpForm() {
 
     return (
         <form onSubmit={registerUser}>
-            <label htmlFor="name">Pleae Enter Your Email: </label>
+            <label htmlFor="name">Please Enter Your Email: </label>
             <input id='email' name='email' type="text" required />
             <button type="submit"> Register </button>
         </form>

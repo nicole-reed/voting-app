@@ -1,13 +1,51 @@
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import Polls from '../components/Polls'
+import { getCookie } from '../util/getCookie'
+import { Component } from 'react'
+import jwt from 'jsonwebtoken'
+import axios from 'axios'
 
 export default function Profile() {
+
+    const [polls, setPolls] = useState([])
+    const [token, setToken] = useState('')
+
+
+    const getPolls = async () => {
+        try {
+            const cookieToken = getCookie('TOKEN')
+
+            if (!cookieToken) {
+                window.location.href = '/signin'
+            }
+
+            setToken(cookieToken)
+
+            const decodedToken = jwt.decode(cookieToken)
+
+            const res = await axios.get('/api/polls', { params: { createdBy: decodedToken.email } })
+
+            setPolls(res.data)
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+    useEffect(() => {
+        getPolls()
+    }, [])
+
     return <div>
         <Head>
-            <title>My Polls</title>
+            <title>Profile</title>
         </Head>
-        <h1>Here is the profile of the user!</h1>
-        <p>polls by the user will be shown here</p>
+        <h1>My Polls</h1>
+        <Polls polls={polls}></Polls>
+
+        <Link href='/create'>
+            Create A Poll
+      </Link>
 
         <footer>
             <Link href='/'>

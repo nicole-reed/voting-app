@@ -29,7 +29,7 @@ const handler = async (req, res) => {
             await user.updateOne({ loginCode, loginCodeCreatedAt, loginCodeAttempts: 0 })
 
             await sendEmail(email, loginCode)
-            res.send('please check your email for login code')
+            res.send('successfully signed in')
         } catch (error) {
             res.status(error.statussCode || 500).send(error.message)
         }

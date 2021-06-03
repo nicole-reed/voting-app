@@ -8,7 +8,6 @@ const handler = async (req, res) => {
         try {
             const { authorization } = req.headers
 
-
             if (!authorization) {
                 throw new Error('forbidden')
             }
