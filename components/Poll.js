@@ -7,8 +7,8 @@ const Poll = ({ poll, voteOnPoll }) => {
             <h3 className={pollStyles.card}>{poll.title}</h3>
             <p>created by: {poll.createdBy}</p>
             <ul>
-                {Object.entries(poll.answers).map((entry) => (
-                    <li>{entry[0]} <button onClick={() => voteOnPoll(poll._id, entry[0])}>+</button> {entry[1]}</li>
+                {Object.entries(poll.answers).map((entry, i) => (
+                    <li key={i}>{entry[0]} <button onClick={() => voteOnPoll(poll._id, entry[0])}>+</button> {entry[1]}</li>
                 ))}
 
             </ul>

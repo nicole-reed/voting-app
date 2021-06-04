@@ -8,6 +8,7 @@ export default function SignUpForm() {
             event.preventDefault()
             await axios.post('/api/signup', { email: event.target.email.value })
             toastr.success('user created')
+            window.location.href = '/signin'
         } catch (error) {
 
             toastr.error(error.response.data)
@@ -15,10 +16,13 @@ export default function SignUpForm() {
     }
 
     return (
-        <form onSubmit={registerUser}>
-            <label htmlFor="name">Please Enter Your Email: </label>
-            <input id='email' name='email' type="text" required />
-            <button type="submit"> Register </button>
-        </form>
+        <div>
+            <h1>Enter Your Email To Sign Up:</h1>
+            <form onSubmit={registerUser}>
+                <label htmlFor="name">Please Enter Your Email: </label>
+                <input id='email' name='email' type="text" placeholder='example@yopmail.com' required />
+                <button type="submit"> Register </button>
+            </form>
+        </div>
     )
 }

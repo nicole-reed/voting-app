@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Polls from '../components/Polls'
 import { getCookie } from '../util/getCookie'
-import { Component } from 'react'
 import jwt from 'jsonwebtoken'
 import axios from 'axios'
 

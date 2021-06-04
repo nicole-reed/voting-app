@@ -44,13 +44,13 @@ export default function CreatePoll() {
         <Head>
             <title>Create</title>
         </Head>
-        <h1>Create Your Own Poll</h1>
+        <h1>Create A Poll</h1>
         <form onSubmit={savePoll}>
             <label htmlFor="name">Please Enter Your Question: </label>
-            <input id='title' name='title' type="text" required />
+            <input id='title' name='title' type="text" placeholder="What's Your Question?" required />
             <br></br>
             <label htmlFor="name">Please Enter Your Answers Separated By Commas: </label>
-            <input id='answers' name='answers' type="text" required />
+            <input id='answers' name='answers' type="text" placeholder='answer, answer, answer' required />
             <br></br>
             <button type="submit"> Submit Your Poll </button>
         </form>
