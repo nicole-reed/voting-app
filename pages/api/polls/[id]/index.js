@@ -2,11 +2,11 @@ import { Poll } from '../../../../models/Poll'
 import connectDB from '../../../../middleware/mongodb'
 import jwt from 'jsonwebtoken'
 import { NotFoundError } from '../../../../errors/notFound.error'
-import { BadRequestError } from '../../../../errors/badRequest.error'
+
 
 const handler = async (req, res) => {
 
-    if (req.method === 'PUT') {
+    if (req.method === 'DELETE') {
         try {
             const { authorization } = req.headers
 
@@ -14,37 +14,30 @@ const handler = async (req, res) => {
                 throw new Error('forbidden')
             }
 
-            jwt.verify(authorization, process.env.SECRET)
+            const decodedJwt = jwt.verify(authorization, process.env.SECRET)
 
             const { id } = req.query
-            if (!id) {
-                throw new BadRequestError('please enter id')
-            }
 
             const poll = await Poll.findOne({ _id: id })
+
             if (!poll) {
                 throw new NotFoundError(`poll with _id ${id} does not exist`)
             }
 
-            const { answer } = req.body
-            if (!answer) {
-                throw new BadRequestError('please enter answer')
+            if (poll.createdBy !== decodedJwt.email) {
+                throw new Error('forbidden')
             }
 
-            if (!poll.answers.has(answer)) {
-                throw new BadRequestError('please enter valid answer')
-            }
+            await poll.deleteOne()
 
-            await poll.updateOne({ $inc: { [`answers.${answer}`]: 1 } })
-
-            res.send('success')
+            res.send('poll successfully deleted')
         } catch (error) {
             console.log(error)
             res.status(500).send(error.message)
         }
 
     } else {
-        res.status(400).send(`poll not found`)
+        res.status(400).send(`no endpoint ${req.method} /polls`)
     }
 }
 

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import Polls from '../components/Polls'
-import { getCookie } from '../util/getCookie'
-import jwt from 'jsonwebtoken'
 import axios from 'axios'
 
 export default function Home() {
@@ -42,21 +40,19 @@ export default function Home() {
         </p>
 
       <div className="grid">
-        <Polls polls={polls} setPolls={setPolls}>
-
-        </Polls>
+        <Polls polls={polls} setPolls={setPolls} deletePoll={false} />
 
         <Link href="/profile">
           <a className="card">
             <h3>My Profile &rarr;</h3>
-            <p>see all of my polls</p>
+            <p>See all of your polls.</p>
           </a>
         </Link>
 
         <Link href='/create'>
           <a className="card">
             <h3>Create A Poll &rarr;</h3>
-            <p>click here to create your own poll</p>
+            <p>Click here to create a new poll.</p>
           </a>
         </Link>
 

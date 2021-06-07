@@ -59,20 +59,6 @@ const handler = async (req, res) => {
             res.status(500).send(error.message)
         }
 
-    } else if (req.method === 'DELETE') {
-        try {
-            const { postId } = req.query
-
-            const pollToDelete = await Poll.findOne({ _id: postId })
-
-            await Poll.deleteOne(pollToDelete)
-
-            res.send('poll successfully deleted')
-        } catch (error) {
-            console.log(error)
-            res.status(500).send(error.message)
-        }
-
     } else {
         res.status(400).send(`no endpoint ${req.method} /polls`)
     }
