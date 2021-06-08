@@ -5,6 +5,7 @@ import Polls from '../components/Polls'
 import { getCookie } from '../util/getCookie'
 import jwt from 'jsonwebtoken'
 import axios from 'axios'
+import Nav from '../components/Nav'
 
 export default function Profile() {
 
@@ -39,8 +40,9 @@ export default function Profile() {
         <Head>
             <title>Profile</title>
         </Head>
+        <Nav />
         <h1>My Polls</h1>
-        <Polls polls={polls} deletePoll={true} />
+        <Polls polls={polls} />
 
         <Link href='/create'>
             Create A Poll

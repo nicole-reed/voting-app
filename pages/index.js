@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import Polls from '../components/Polls'
 import axios from 'axios'
+import Nav from '../components/Nav'
 
 export default function Home() {
 
@@ -25,7 +26,7 @@ export default function Home() {
     <Head>
       <title>Home</title>
     </Head>
-
+    <Nav />
     <main>
       <h1 className="title">
         Welcome to Nicky's Pointless Polls!
@@ -35,12 +36,12 @@ export default function Home() {
         We can't wait to hear your opinions.
         </p>
 
-      <p>
+      {/* <p>
         Sign Up <Link href='/signup'>Here</Link>!
-        </p>
+        </p> */}
 
       <div className="grid">
-        <Polls polls={polls} setPolls={setPolls} deletePoll={false} />
+        <Polls polls={polls} setPolls={setPolls} />
 
         <Link href="/profile">
           <a className="card">

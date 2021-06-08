@@ -40,10 +40,9 @@ const Polls = ({ polls, setPolls }) => {
                 { headers: { authorization: token } }
             )
             const updatedPolls = [...polls]
-            const index = updatedPolls.findIndex((poll) => poll._id === id)
-            updatedPolls = updatedPolls.splice(index, 1)
+            const finalPolls = updatedPolls.filter(poll => poll._id !== id)
 
-            setPolls(updatedPolls)
+            setPolls(finalPolls)
         } catch (error) {
             console.log(error.message)
         }
