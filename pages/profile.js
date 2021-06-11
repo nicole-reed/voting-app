@@ -42,7 +42,7 @@ export default function Profile() {
         </Head>
         <Nav />
         <h1>My Polls</h1>
-        <Polls polls={polls} />
+        <Polls polls={polls} showDelete={true} />
 
         <Link href='/create'>
             Create A Poll

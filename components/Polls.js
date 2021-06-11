@@ -3,7 +3,7 @@ import Poll from './Poll'
 import axios from 'axios'
 import { getCookie } from '../util/getCookie'
 
-const Polls = ({ polls, setPolls }) => {
+const Polls = ({ polls, setPolls, showDelete }) => {
     const voteOnPoll = async (id, answer) => {
         try {
             const token = getCookie('TOKEN')
@@ -51,7 +51,7 @@ const Polls = ({ polls, setPolls }) => {
     return (
         <div className={pollStyles.grid}>
             {polls.map((poll) => (
-                <Poll key={poll._id} poll={poll} voteOnPoll={voteOnPoll} deletePoll={deletePoll} />
+                <Poll key={poll._id} poll={poll} voteOnPoll={voteOnPoll} deletePoll={deletePoll} showDelete={showDelete} />
             ))}
         </div>
     )

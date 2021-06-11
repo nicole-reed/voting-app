@@ -1,7 +1,6 @@
 import pollStyles from '../styles/poll.module.css'
-import { getCookie } from '../util/getCookie'
 
-const Poll = ({ poll, voteOnPoll, deletePoll }) => {
+const Poll = ({ poll, voteOnPoll, deletePoll, showDelete }) => {
 
     return (
         <a className={pollStyles.card}>
@@ -14,7 +13,7 @@ const Poll = ({ poll, voteOnPoll, deletePoll }) => {
 
             </ul>
 
-            <button onClick={() => deletePoll(poll._id)}>Delete</button>
+            {showDelete && <button onClick={() => deletePoll(poll._id)}>Delete</button>}
 
         </a>
     )
