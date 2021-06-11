@@ -1,5 +1,6 @@
 import axios from 'axios'
 import toastr from 'toastr'
+import Nav from '../components/Nav'
 
 export default function SignUpForm() {
     const registerUser = async event => {
@@ -17,6 +18,7 @@ export default function SignUpForm() {
 
     return (
         <div>
+            <Nav />
             <h1>Enter Your Email To Sign Up:</h1>
             <form onSubmit={registerUser}>
                 <label htmlFor="name">Please Enter Your Email: </label>

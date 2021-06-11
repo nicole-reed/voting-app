@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
+import Nav from '../components/Nav'
 import { getCookie } from '../util/getCookie'
 import axios from 'axios'
 import toastr from 'toastr'
@@ -44,6 +45,7 @@ export default function CreatePoll() {
         <Head>
             <title>Create</title>
         </Head>
+        <Nav />
         <h1>Create A Poll</h1>
         <form onSubmit={savePoll}>
             <label htmlFor="name">Please Enter Your Question: </label>
