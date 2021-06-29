@@ -6,6 +6,7 @@ import { getCookie } from '../util/getCookie'
 import jwt from 'jsonwebtoken'
 import axios from 'axios'
 import Nav from '../components/Nav'
+import fontStyles from '../styles/font.module.css'
 
 export default function Profile() {
 
@@ -41,17 +42,20 @@ export default function Profile() {
             <title>Profile</title>
         </Head>
         <Nav />
-        <h1>My Polls</h1>
-        <Polls polls={polls} showDelete={true} />
+        <main className={fontStyles.font}>
+            <h1 className={fontStyles.title}>Polls Created By Me</h1>
 
-        <Link href='/create'>
-            Create A Poll
-      </Link>
+            <Polls polls={polls} showDelete={true} />
 
-        <footer>
-            <Link href='/'>
-                &larr; Home
+            <Link href='/create'>
+                Create A Poll
       </Link>
-        </footer>
+            <footer>
+                <Link href='/'>
+                    &larr; Home
+      </Link>
+            </footer>
+        </main>
+
     </div>
 }

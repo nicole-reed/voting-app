@@ -5,6 +5,7 @@ import Nav from '../components/Nav'
 import { getCookie } from '../util/getCookie'
 import axios from 'axios'
 import toastr from 'toastr'
+import fontStyles from '../styles/font.module.css'
 
 export default function CreatePoll() {
     const [token, setToken] = useState('')
@@ -36,12 +37,13 @@ export default function CreatePoll() {
                 { headers: { authorization: token } }
             )
             toastr.success('poll created')
+            window.location.href = '/'
         } catch (error) {
             toastr.error(error.response.data)
         }
     }
 
-    return <div>
+    return <div className={fontStyles.font}>
         <Head>
             <title>Create</title>
         </Head>

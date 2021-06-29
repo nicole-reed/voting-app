@@ -138,6 +138,15 @@ export default function Home() {
           line-height: 1.5;
           font-size: 1.5rem;
         }
+
+        @media (max-width: 600px) {
+          .title {
+            font-size: 2rem;
+          }
+          .description {
+            font-size: 1rem;
+          }
+        }
       `}</style>
 
     <style jsx global>{`

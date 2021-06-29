@@ -1,39 +1,41 @@
-"use strict"
-const nodemailer = require("nodemailer")
+const nodemailer = require('nodemailer')
+const { google } = require('googleapis')
 
-// async..await is not allowed in global scope, must use a wrapper
+const oAuth2Client = new google.auth.OAuth2(
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    process.env.REDIRECT_URI
+)
+oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN })
+
 export async function sendEmail(email, loginCode) {
-    // Generate test SMTP service account from ethereal.email
-    // Only needed if you don't have a real mail account for testing
-    let testAccount = await nodemailer.createTestAccount()
+    try {
+        const accessToken = await oAuth2Client.getAccessToken()
 
-    // create reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-        host: "smtp.ethereal.email",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: testAccount.user, // generated ethereal user
-            pass: testAccount.pass, // generated ethereal password
-        },
-    })
+        const transport = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                type: 'OAuth2',
+                user: 'fromthedeskofnicreed@gmail.com',
+                clientId: process.env.CLIENT_ID,
+                clientSecret: process.env.CLIENT_SECRET,
+                refreshToken: process.env.REFRESH_TOKEN,
+                accessToken: accessToken
+            }
+        })
 
-    // send mail with defined transport object
-    let info = await transporter.sendMail({
-        from: '"Fred Foo 👻" <foo@example.com>', // sender address
-        to: email, // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Welcome.", // plain text body
-        html: `
-        <h1>${loginCode}</h1>
-      `, // html body
-    })
+        let mailOptions = await transport.sendMail({
+            from: 'fromthedeskofnicreed@gmail.com',
+            to: email,
+            subject: 'Your login code.',
+            text: 'Here is your login code:',
+            html: `
+            <h2>Please Use The Login Code Below To Sign Into Your Account</h2>
+            <h1>Your Code: ${loginCode}</h1>
+            `,
+        })
 
-    console.log("Message sent: %s", info.messageId)
-    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-    // Preview only available when sending through an Ethereal account
-    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
-    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    } catch (error) {
+        return error
+    }
 }
-

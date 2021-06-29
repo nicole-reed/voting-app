@@ -2,6 +2,7 @@ import axios from 'axios'
 import toastr from 'toastr'
 import Link from 'next/link'
 import Nav from '../components/Nav'
+import fontStyles from '../styles/font.module.css'
 
 
 export default function SignIn() {
@@ -22,14 +23,16 @@ export default function SignIn() {
     }
 
     return (
-        <div>
+        <div className={fontStyles.font}>
             <Nav />
-            <h1>Please Enter Your Email to Sign In</h1>
-            <form onSubmit={registerUser}>
-                <label htmlFor="name">Please Enter Your Email: </label>
-                <input id='email' name='email' type="text" required />
-                <button type="submit"> Sign In </button>
-            </form>
+            <main>
+                <h1>Please Enter Your Email to Sign In</h1>
+                <form onSubmit={registerUser}>
+                    <label htmlFor="name">Please Enter Your Email: </label>
+                    <input id='email' name='email' type="text" required />
+                    <button type="submit"> Sign In </button>
+                </form>
+            </main>
 
             <footer>
                 <p>Don't have an account?

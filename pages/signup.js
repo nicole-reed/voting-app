@@ -1,6 +1,7 @@
 import axios from 'axios'
 import toastr from 'toastr'
 import Nav from '../components/Nav'
+import fontStyles from '../styles/font.module.css'
 
 export default function SignUpForm() {
     const registerUser = async event => {
@@ -17,7 +18,7 @@ export default function SignUpForm() {
     }
 
     return (
-        <div>
+        <div className={fontStyles.font}>
             <Nav />
             <h1>Enter Your Email To Sign Up:</h1>
             <form onSubmit={registerUser}>
