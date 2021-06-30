@@ -22,7 +22,7 @@ const handler = async (req, res) => {
         }
 
     } else {
-        res.status(400).send(`no endpoint ${req.method} /signup`)
+        res.status(400).send(`no endpoint ${req.method} /secure`)
     }
 }
 
