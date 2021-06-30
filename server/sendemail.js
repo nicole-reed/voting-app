@@ -24,7 +24,7 @@ export async function sendEmail(email, loginCode) {
             }
         })
 
-        let mailOptions = await transport.sendMail({
+        await transport.sendMail({
             from: 'fromthedeskofnicreed@gmail.com',
             to: email,
             subject: 'Your login code.',
