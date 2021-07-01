@@ -5,7 +5,6 @@ import Nav from '../components/Nav'
 import { getCookie } from '../util/getCookie'
 import axios from 'axios'
 import toastr from 'toastr'
-import fontStyles from '../styles/font.module.css'
 
 export default function CreatePoll() {
     const [token, setToken] = useState('')
@@ -43,30 +42,24 @@ export default function CreatePoll() {
         }
     }
 
-    return <div className={fontStyles.font}>
+    return <div>
         <Head>
             <title>Create</title>
         </Head>
         <Nav />
-        <h1>Create A Poll</h1>
-        <form onSubmit={savePoll}>
-            <label htmlFor="name">Please Enter Your Question: </label>
-            <input id='title' name='title' type="text" placeholder="What's Your Question?" required />
-            <br></br>
-            <label htmlFor="name">Please Enter Your Answers Separated By Commas: </label>
-            <input id='answers' name='answers' type="text" placeholder='answer, answer, answer' required />
-            <br></br>
-            <button type="submit"> Submit Your Poll </button>
-        </form>
+        <main>
+            <h1>Create A Poll</h1>
+            <form onSubmit={savePoll}>
+                <label htmlFor="name">Please Enter Your Question: </label>
+                <input id='title' name='title' type="text" placeholder="What's Your Question?" required />
+                <br></br>
+                <label htmlFor="name">Please Enter Your Answers Separated By Commas: </label>
+                <input id='answers' name='answers' type="text" placeholder='answer, answer, answer' required />
+                <br></br>
+                <button type="submit"> Submit Your Poll </button>
+            </form>
 
-        <Link href='/profile'>
-            &larr; Profile
-      </Link>
-        <footer>
-            <Link href='/'>
-                &larr; Home
-      </Link>
-        </footer>
+        </main>
     </div>
 }
 

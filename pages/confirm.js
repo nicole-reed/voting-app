@@ -1,6 +1,6 @@
 import axios from 'axios'
 import toastr from 'toastr'
-import fontStyles from '../styles/font.module.css'
+
 
 
 export default function Confirm() {
@@ -16,7 +16,7 @@ export default function Confirm() {
     }
 
     return (
-        <div className={fontStyles.font}>
+        <div>
             <h1>Please Check Your Email For Your 6 Digit Login Code</h1>
             <form onSubmit={confirmUser}>
                 <label htmlFor="name">Confirm Your Email: </label>

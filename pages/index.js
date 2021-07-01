@@ -22,46 +22,48 @@ export default function Home() {
     getPolls()
   }, [])
 
-  return <div className="container">
+  return <div>
     <Head>
       <title>Home</title>
     </Head>
     <Nav />
-    <main>
-      <h1 className="title">
-        Welcome to Nicky's Pointless Polls!
+    <div className="container">
+      <main>
+        <h1 className="title">
+          Welcome to Nicky's Pointless Polls!
         </h1>
 
-      <p className="description">
-        We can't wait to hear your opinions.
+        <p className="description">
+          We can't wait to hear your opinions.
         </p>
 
-      <div className="grid">
-        <Polls polls={polls} setPolls={setPolls} />
+        <div className="grid">
+          <Polls polls={polls} setPolls={setPolls} />
 
-        <Link href="/profile">
-          <a className="card">
-            <h3>My Profile &rarr;</h3>
-            <p>See all of your polls.</p>
-          </a>
-        </Link>
+          <Link href="/profile">
+            <a className="card">
+              <h3>My Profile &rarr;</h3>
+              <p>See all of your polls.</p>
+            </a>
+          </Link>
 
-        <Link href='/create'>
-          <a className="card">
-            <h3>Create A Poll &rarr;</h3>
-            <p>Click here to create a new poll.</p>
-          </a>
-        </Link>
+          <Link href='/create'>
+            <a className="card">
+              <h3>Create A Poll &rarr;</h3>
+              <p>Click here to create a new poll.</p>
+            </a>
+          </Link>
 
-      </div>
+        </div>
 
-    </main>
+      </main>
+    </div>
 
     <footer>
 
     </footer>
 
-    <style jsx>{`
+    {/* <style jsx>{`
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
@@ -158,6 +160,6 @@ export default function Home() {
         * {
           box-sizing: border-box;
         }
-      `}</style>
+      `}</style> */}
   </div>
 }
